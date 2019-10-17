@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  web:
+    build:
+      context: ./docker
+    volumes:
+      - ./web:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+
+  db:
+    image: postgres:9.4
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: vgetpa10
+      POSTGRES_DB: docker_test
